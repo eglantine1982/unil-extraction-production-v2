@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 def extraire_contenu_page_unil(url, nom_page):
-    """Extraction robuste du contenu d'une page UNIL"""
+    """Extraction STRUCTURÉE du contenu d'une page UNIL avec formatage professionnel"""
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
     }
@@ -20,16 +20,65 @@ def extraire_contenu_page_unil(url, nom_page):
         
         soup = BeautifulSoup(response.text, 'html.parser')
         
-        # Extraction du contenu principal
-        contenu_principal = ""
-        for element in soup.find_all(['p', 'h1', 'h2', 'h3', 'h4', 'li', 'td', 'div', 'span']):
-            texte = element.get_text(strip=True)
-            if texte and len(texte) > 5:
-                contenu_principal += texte + "\n"
+        # EXTRACTION STRUCTURÉE avec préservation du formatage
+        contenu_structure = f"\n{'='*80}\n"
+        contenu_structure += f"PAGE: {nom_page.upper()}\n"
+        contenu_structure += f"URL: {url}\n"
+        contenu_structure += f"{'='*80}\n\n"
         
-        if len(contenu_principal) > 50:
-            print(f"✅ {len(contenu_principal):,} caractères extraits pour {nom_page}")
-            return contenu_principal
+        # Extraction des titres avec hiérarchie
+        for titre in soup.find_all(['h1', 'h2', 'h3', 'h4']):
+            texte_titre = titre.get_text(strip=True)
+            if texte_titre and len(texte_titre) > 3:
+                niveau = int(titre.name[1])
+                if niveau == 1:
+                    contenu_structure += f"\n{'#'*3} {texte_titre.upper()} {'#'*3}\n\n"
+                elif niveau == 2:
+                    contenu_structure += f"\n## {texte_titre}\n\n"
+                elif niveau == 3:
+                    contenu_structure += f"\n### {texte_titre}\n\n"
+                else:
+                    contenu_structure += f"\n#### {texte_titre}\n\n"
+        
+        # Extraction des paragraphes avec espacement
+        for paragraphe in soup.find_all(['p', 'div']):
+            texte_para = paragraphe.get_text(strip=True)
+            if texte_para and len(texte_para) > 20 and not any(child.name in ['h1', 'h2', 'h3', 'h4'] for child in paragraphe.find_all()):
+                contenu_structure += f"{texte_para}\n\n"
+        
+        # Extraction des listes avec formatage
+        for liste in soup.find_all(['ul', 'ol']):
+            contenu_structure += "\n**LISTE:**\n"
+            for item in liste.find_all('li'):
+                texte_item = item.get_text(strip=True)
+                if texte_item and len(texte_item) > 5:
+                    contenu_structure += f"• {texte_item}\n"
+            contenu_structure += "\n"
+        
+        # Extraction des tableaux avec structure
+        for tableau in soup.find_all('table'):
+            contenu_structure += "\n**TABLEAU:**\n"
+            for ligne in tableau.find_all('tr'):
+                cellules = [td.get_text(strip=True) for td in ligne.find_all(['td', 'th'])]
+                if any(cellules):
+                    contenu_structure += " | ".join(cellules) + "\n"
+            contenu_structure += "\n"
+        
+        # Extraction des liens importants
+        contenu_structure += "\n**LIENS PERTINENTS:**\n"
+        for lien in soup.find_all('a', href=True):
+            url_lien = lien.get('href')
+            texte_lien = lien.get_text(strip=True)
+            if (url_lien and texte_lien and 
+                'unil.ch' in str(url_lien) and 
+                len(texte_lien) > 3 and len(texte_lien) < 100):
+                contenu_structure += f"- {texte_lien}: {url_lien}\n"
+        
+        contenu_structure += f"\n{'─'*80}\n"
+        
+        if len(contenu_structure) > 200:
+            print(f"✅ {len(contenu_structure):,} caractères extraits pour {nom_page} (STRUCTURÉ)")
+            return contenu_structure
         else:
             print(f"❌ Échec extraction {nom_page}")
             return None
