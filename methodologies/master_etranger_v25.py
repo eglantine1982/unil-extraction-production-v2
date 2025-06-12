@@ -38,22 +38,22 @@ def extraire_contenu_page_unil(url, nom_page):
         return None
 
 def extraire_contenu_master_etranger():
-    """CODE 1 - Extraction exhaustive Master Étranger"""
+    """CODE 1 - Extraction exhaustive Master Étranger avec URLs corrigées"""
     
-    # URLs exhaustives Master Étranger
+    # URLs exhaustives Master Étranger VALIDÉES
     urls_master_etranger = {
-        'page_principale': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/sinscrire/master---contenu-dossier-dimmatriculation.html',
-        'contenu_dossier_master_parent': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/sinscrire/master---contenu-dossier-dimmatriculation.html',
-        'avec_bachelor_convention': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/sinscrire/master---contenu-dossier-dimmatriculation/avec-un-bachelor-obtenu-dans-un-etat-ayant-ratifie-la-convention.html',
-        'avec_bachelor_autre_etat': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/sinscrire/master---contenu-dossier-dimmatriculation/avec-un-bachelor-obtenu-dans-un-autre-etat.html',
-        'avec_bachelor_chine': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/sinscrire/master---contenu-dossier-dimmatriculation/avec-un-bachelor-obtenu-en-chine.html',
-        'delais_candidature': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/sinscrire/delais-pour-le-depot-dune-candidature.html',
-        'inscription_en_ligne': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/sinscrire/inscription-en-ligne.html',
-        'taxes_semestrielles': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/sinscrire/les-taxes-semestrielles.html',
-        'permis_visa': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/sinscrire/permis-pour-etudes---visa.html',
-        'taxe_administrative': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/sinscrire/taxe-administrative.html',
-        'nous_contacter': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/sinscrire/nous-contacter.html',
-        'etudes_anterieures': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/sinscrire/etudes-anterieures-inachevee.html'
+        'delais': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/master/avec-un-bachelor-etranger/delais.html',
+        'masters_generaux': 'https://www.unil.ch/unil/fr/home/menuinst/etudier/masters.html',
+        'master_temps_partiel': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/master/avec-un-bachelor-etranger/master-a-temps-partiel.html',
+        'taxe_administrative': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/master/avec-un-bachelor-etranger/taxe-administrative.html',
+        'permis_visa': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/master/avec-un-bachelor-etranger/permis-pour-etudes---visa.html',
+        'conditions_particulieres': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/master/avec-un-bachelor-etranger/conditions-particulieres.html',
+        'deroulement_admission': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/master/avec-un-bachelor-etranger/deroulement-dune-admission.html',
+        'inscription_en_ligne': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/master/avec-un-bachelor-etranger/sinscrire-en-ligne-et-prepar.html',
+        'cours_francais': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/master/avec-un-bachelor-etranger/cours-satellites-et-cours-intensifs-de-francais.html',
+        'equivalences': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/master/avec-un-bachelor-etranger/equivalences.html',
+        'medecine': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/medecine.html',
+        'droit_allemand': 'https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/droit-allemand.html'
     }
     
     contenu_master = {}
