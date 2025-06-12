@@ -12,3 +12,6 @@ URLS_MASTER_ETRANGER = [
     "https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/medecine.html",
     "https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/droit-allemand.html"
 ]
+# Configuration simplifiée - URLs intégrées dans le code principal
+def get_status():
+    return "URLs intégrées dans master_etranger_v25.py"
