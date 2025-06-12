@@ -1,7 +1,4 @@
-# Configuration URLs UNIL Master Étranger - Version Production CORRIGÉE
-# URLs complètes validées par l'utilisateur
-
-URLS_MASTER_ETRANGER_COMPLETES = [
+URLS_MASTER_ETRANGER = [
     "https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/master/avec-un-bachelor-etranger/delais.html",
     "https://www.unil.ch/unil/fr/home/menuinst/etudier/masters.html",
     "https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/master/avec-un-bachelor-etranger/master-a-temps-partiel.html",
@@ -15,11 +12,3 @@ URLS_MASTER_ETRANGER_COMPLETES = [
     "https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/medecine.html",
     "https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/droit-allemand.html"
 ]
-
-def get_full_urls():
-    """Retourne la liste complète des URLs validées à extraire"""
-    return URLS_MASTER_ETRANGER_COMPLETES
-
-def get_base_url():
-    """Retourne l'URL de base principale UNIL"""
-    return "https://www.unil.ch/immat/fr/home/menuinst/futurs-etudiants/"
